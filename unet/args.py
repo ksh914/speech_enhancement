@@ -62,6 +62,6 @@ parser.add_argument('--hop_length_frame', default=16128, type=int)
 # hop length for noise files to blend (noise is splitted into several windows)
 parser.add_argument('--hop_length_frame_noise', default=10000, type=int)
 # Choosing n_fft and hop_length_fft to have squared spectrograms
-parser.add_argument('--n_fft', default=511, type=int)
+parser.add_argument('--n_fft', default=512, type=int)
 
 parser.add_argument('--hop_length_fft', default=63, type=int)

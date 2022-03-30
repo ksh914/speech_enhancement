@@ -43,8 +43,8 @@ sample_rate, min_duration, frame_length, hop_length_frame, hop_length_frame_nois
     noise = audio_files_to_numpy(noise_dir, list_noise_files, sample_rate,
                                      frame_length, hop_length_frame_noise, min_duration)
 
-    voice = audio_files_to_numpy(voice_dir, list_voice_files,
-                                     sample_rate, frame_length, hop_length_frame, min_duration)
+    voice = audio_files_to_numpy(voice_dir, list_voice_files, sample_rate, 
+                                     frame_length, hop_length_frame, min_duration)
 
     # Blend some clean voices with random selected noises (and a random level of noise)
     prod_voice, prod_noise, prod_noisy_voice = blend_noise_randomly(
@@ -60,7 +60,7 @@ sample_rate, min_duration, frame_length, hop_length_frame, hop_length_frame_nois
     sf.write(path_save_sound + 'noise_long.wav',noise_long[0, :], sample_rate)
 
     # Squared spectrogram dimensions
-    dim_square_spec = int(n_fft / 2) + 1 #256
+    dim_square_spec = int(n_fft / 2)  #256
 
     # Create Amplitude and phase of the sounds
     m_amp_db_voice,  m_pha_voice = numpy_audio_to_matrix_spectrogram(
