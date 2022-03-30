@@ -1,7 +1,0 @@
-pytest
-tensorflow
-librosa
-matplotlib
-numpy
-scipy
-sklearn
