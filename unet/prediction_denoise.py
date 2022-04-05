@@ -26,7 +26,7 @@ audio_output_prediction, sample_rate, min_duration, frame_length, hop_length_fra
                                  frame_length, hop_length_frame, min_duration)
 
     #Dimensions of squared spectrogram
-    dim_square_spec = int(n_fft / 2) + 1
+    dim_square_spec = int(n_fft / 2) 
     print(dim_square_spec)
 
     # Create Amplitude and phase of the sounds

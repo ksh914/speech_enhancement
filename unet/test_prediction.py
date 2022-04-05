@@ -45,7 +45,7 @@ audio = audio_files_to_numpy(audio_dir_prediction, audio_input_prediction, sampl
 n_fft = 511
 hop_length_fft = 63
 
-dim_square_spec = int(n_fft / 2) + 1
+dim_square_spec = int(n_fft / 2) +1
 
 # Create Amplitude and phase of the sounds
 m_amp_db_audio,  m_pha_audio = numpy_audio_to_matrix_spectrogram(

@@ -1,6 +1,7 @@
 from args import parser
 import os
-from prepare_data import create_data
+from create_data import synthesis
+from prepare_data import detach
 from train_model import training
 from prediction_denoise import prediction
 import warnings
@@ -13,7 +14,8 @@ if __name__ == '__main__':
     mode = args.mode
 
     # Initialize all modes to zero
-    data_mode = False
+    detach_mode = False
+    creation_mode = False
     training_mode = False
     prediction_mode = False
 
@@ -22,10 +24,37 @@ if __name__ == '__main__':
         prediction_mode = True
     elif mode == 'training':
         training_mode = True
-    elif mode == 'data_creation':
-        data_mode = True
+    elif mode == 'synthesis':
+        creation_mode = True
+    elif mode == 'detach':
+        detach_mode = True
 
-    if data_mode:
+    
+    if creation_mode:
+        #folder containing noises
+        noise_dir = args.noise_dir
+        #folder containing clean voices
+        voice_dir = args.voice_dir
+        #path to save sounds
+        path_save_sound = args.path_save_sound
+        # Sample rate to read audio
+        sample_rate = args.sample_rate
+        #Frame length for training data
+        frame_length = args.frame_length
+        # hop length for clean voice files
+        hop_length_frame = args.hop_length_frame
+        # hop length for noise files
+        hop_length_frame_noise = args.hop_length_frame_noise
+        # How much frame to create for training
+        nb_samples = args.nb_samples
+        #nb of points for fft(for spectrogram computation)
+        n_fft = args.n_fft
+        #hop length for fft
+        hop_length_fft = args.hop_length_fft
+        synthesis(noise_dir, voice_dir,path_save_sound, frame_length,sample_rate,hop_length_frame_noise,
+                hop_length_frame,nb_samples)
+        
+    elif detach_mode:
         #Example: python main.py --mode='data_creation'
 
         #folder containing noises
@@ -42,8 +71,6 @@ if __name__ == '__main__':
         path_save_spectrogram = args.path_save_spectrogram
         # Sample rate to read audio
         sample_rate = args.sample_rate
-        # Minimum duration of audio files to consider
-        min_duration = args.min_duration
         #Frame length for training data
         frame_length = args.frame_length
         # hop length for clean voice files
@@ -57,10 +84,12 @@ if __name__ == '__main__':
         #hop length for fft
         hop_length_fft = args.hop_length_fft
 
-        create_data(noise_dir, voice_dir, path_save_time_serie, path_save_sound, path_save_sound2, path_save_spectrogram, sample_rate,
-        min_duration, frame_length, hop_length_frame, hop_length_frame_noise, nb_samples, n_fft, hop_length_fft)
+        detach(noise_dir, voice_dir, path_save_time_serie, path_save_sound, path_save_sound2, path_save_spectrogram, sample_rate,
+        frame_length, hop_length_frame, hop_length_frame_noise, nb_samples, n_fft, hop_length_fft)
 
 
+    
+    
     elif training_mode:
         #Example: python main.py --mode="training"
         #Path were to read spectrograms of noisy voice and clean voice
