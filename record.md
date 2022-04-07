@@ -21,4 +21,9 @@ scipy_wav[0].type : <class 'numpy.int16>
 librosa_wav[0].type : <class 'numpy.float32>
 
 따라서 fft를 하고 난 뒤, wav파일을 load할 때 type을 맞추거나 librosa or scipy 둘 중에 하나만 써야할 것 같다는 판단을 했다.
+
+4.7
+training 까지 완료 하지만 데이터가 너무 많아서 오래 걸린다
+
+내일 일어나서 해야지
 ```

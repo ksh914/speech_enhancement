@@ -137,20 +137,25 @@ def matrix_spectrogram_to_numpy_audio(m_mag_db, m_phase, frame_length, hop_lengt
 
 def scaled_in(matrix_spec):
     "global scaling apply to noisy voice spectrograms (scale between -1 and 1)"
-    matrix_spec = (matrix_spec + 46)/50
+    matrix_spec = (matrix_spec + 57)/59
     return matrix_spec
 
 def scaled_ou(matrix_spec):
     "global scaling apply to noise models spectrograms (scale between -1 and 1)"
-    matrix_spec = (matrix_spec -6 )/82
+    matrix_spec = (matrix_spec -9 )/75
     return matrix_spec
 
 def inv_scaled_in(matrix_spec):
     "inverse global scaling apply to noisy voices spectrograms"
-    matrix_spec = matrix_spec * 50 - 46
+    matrix_spec = matrix_spec * 59 - 57
     return matrix_spec
 
 def inv_scaled_ou(matrix_spec):
     "inverse global scaling apply to noise models spectrograms"
-    matrix_spec = matrix_spec * 82 + 6
+    matrix_spec = matrix_spec * 75 + 9
     return matrix_spec
+def inv_scaled_ou_fft(matrix_spec):
+    matrix_spec = matrix_spec *70
+    
+def scaled_ou_fft(matrix_spec):
+    matrix_spec = (matrix_spec)/70
